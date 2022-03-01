@@ -7,6 +7,10 @@ const typeDefs = `
     feed: [Link!]!
   }
 
+  type Mutation {
+    post(url: String!, description: String!): Link!
+  }
+
   type Link {
     id: ID!
     description: String!
@@ -23,7 +27,7 @@ const resolvers = {
     id: (parent) => parent.id,
     description: (parent) => parent.description,
     url: (parent) => parent.url,
-  }
+  },
 };
 
 const server = new ApolloServer({
@@ -31,11 +35,13 @@ const server = new ApolloServer({
   resolvers,
 });
 
-let links = [{
-  id: 'link-0',
-  url: 'www.howtographql.com',
-  description: 'Fullstack tutorial for GraphQL'
-}]
+let links = [
+  {
+    id: 'link-0',
+    url: 'www.howtographql.com',
+    description: 'Fullstack tutorial for GraphQL',
+  },
+];
 
 server
   .listen()
