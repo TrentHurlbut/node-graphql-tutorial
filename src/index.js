@@ -3,7 +3,8 @@ const path = require('path');
 const { ApolloServer, PubSub } = require('apollo-server');
 const { PrismaClient } = require('@prisma/client');
 const { getUserId } = require('./utils');
-const Subscription = require('./resolvers/Subscription')
+const Subscription = require('./resolvers/Subscription');
+const Vote = require('./resolvers/Vote')
 
 const prisma = new PrismaClient();
 const pubsub = new PubSub()
@@ -19,6 +20,7 @@ const resolvers = {
   Subscription,
   User,
   Link,
+  Vote,
 };
 
 const server = new ApolloServer({
